@@ -16,6 +16,7 @@ const DoorComponent = React.createClass({
 
   onDown (e) {
     // console.log('onDown', e)
+    $('#door').css('transform', 'rotateY(10deg)')
     this.start = e.clientX || e.touches[0].clientX
     this.pressed = true
   },
@@ -37,6 +38,7 @@ const DoorComponent = React.createClass({
   getDiff (stop) {
     let diff = stop - this.start
     if (diff <= 0) diff = 0
+    diff += 10
     if (diff > 60) diff = 60
     // console.log('diff', diff)
     return diff
@@ -52,7 +54,7 @@ const DoorComponent = React.createClass({
   },
 
   stop (diff) {
-    if (diff === undefined || diff < 59) {
+    if (diff < 59) {
       this.closeDoor()
     } else {
       this.setState({doorOpened: true})
