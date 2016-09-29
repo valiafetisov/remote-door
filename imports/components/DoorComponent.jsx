@@ -51,6 +51,7 @@ const DoorComponent = React.createClass({
       this.closeDoor()
     } else {
       this.setState({doorOpened: true})
+      this.openDoor()
       Meteor.setTimeout(() => {
         this.setState({doorOpened: false})
         Meteor.setTimeout(() => {
@@ -58,6 +59,10 @@ const DoorComponent = React.createClass({
         }, 100)
       }, 5000)
     }
+  },
+
+  openDoor () {
+    Meteor.call('open')
   },
 
   closeDoor () {

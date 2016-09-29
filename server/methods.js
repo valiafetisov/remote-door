@@ -1,5 +1,5 @@
 import { Meteor } from 'meteor/meteor'
-import client from './main.js'
+import client from './mqttClient'
 
 Meteor.methods({
   'open' () {
