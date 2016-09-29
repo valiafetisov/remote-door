@@ -38,8 +38,8 @@ const DoorComponent = React.createClass({
 
   getDiff (stop) {
     let diff = stop - this.start
-    if (diff <= 0) diff = 0
     diff += 10
+    if (diff <= 0) diff = 0
     if (diff > 60) diff = 60
     // console.log('diff', diff)
     return diff
