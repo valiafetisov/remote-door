@@ -14,40 +14,45 @@ const DoorComponent = React.createClass({
     }
   },
 
-  onMouseDown (e) {
-    this.start = e.clientX
+  onDown (e) {
+    // console.log('onDown', e)
+    this.start = e.clientX || e.touches[0].clientX
     this.pressed = true
   },
 
-  onMouseUp (e) {
+  onUp (e) {
+    // console.log('onUp', e)
     this.pressed = false
-    this.stop(this.getDiff(e))
+    const stop = e.clientX || e.changedTouches[0].clientX
+    this.stop(this.getDiff(stop))
   },
 
-  onMouseMove (e) {
+  onMove (e) {
+    // console.log('onMove', e)
     if (!this.pressed) return
-    this.move(this.getDiff(e))
+    const stop = e.clientX || e.touches[0].clientX
+    this.move(this.getDiff(stop))
   },
 
-  getDiff (e) {
-    let diff = e.clientX - this.start
+  getDiff (stop) {
+    let diff = stop - this.start
     if (diff <= 0) diff = 0
     if (diff > 60) diff = 60
+    // console.log('diff', diff)
     return diff
   },
 
   move (diff) {
-    // console.log('diff', diff)
     $('#door').css('transform', 'rotateY(' + diff + 'deg)')
-    if (diff < 59) {
-      this.setState({doorOpened: false})
-    } else {
+    if (diff >= 59) {
       this.setState({doorOpened: true})
+    } else {
+      this.setState({doorOpened: false})
     }
   },
 
   stop (diff) {
-    if (diff < 59) {
+    if (diff === undefined || diff < 59) {
       this.closeDoor()
     } else {
       this.setState({doorOpened: true})
@@ -75,7 +80,15 @@ const DoorComponent = React.createClass({
 
   render () {
     const style = (this.state.doorOpened) ? {'fill': 'yellow'} : {}
-    return <div className="DoorComponent" onMouseDown={this.onMouseDown} onMouseUp={this.onMouseUp} onMouseMove={this.onMouseMove}>
+    return <div
+      className="DoorComponent"
+      onMouseDown={this.onDown}
+      onTouchStart={this.onDown}
+      onMouseUp={this.onUp}
+      onTouchEnd={this.onUp}
+      onMouseMove={this.onMove}
+      onTouchMove={this.onMove}
+    >
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 831.23 742.3">
         <polyline className="cls-1" vectorEffect="non-scaling-stroke" points="289.82 685.47 289.82 106.84 553.67 79.36 553.67 708.63" />
         <line className="cls-1" vectorEffect="non-scaling-stroke" x1="553.67" y1="480.01" x2="761.7" y2="482.53" />
