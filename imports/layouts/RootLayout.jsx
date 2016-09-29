@@ -3,7 +3,7 @@ import React from 'react'
 const RootLayout = React.createClass({
 
   render () {
-    return <div className="rootLayout">
+    return <div className="RootLayout">
       {this.props.content}
     </div>
   }

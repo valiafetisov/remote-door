@@ -1,0 +1,46 @@
+.DoorComponent
+  position relative
+  height 100%
+  width 100%
+  overflow hidden
+
+  svg
+    position absolute
+    top 50%
+    left 50%
+    transform translate(-50%, -50%)
+    display inline-block
+    overflow hidden
+    height 100vh
+    padding 100px 0
+
+
+    .cls-1, .cls-5
+      fill none
+
+    .cls-1, .cls-2, .cls-3, .cls-4, .cls-5
+      stroke #1d1d1b
+      stroke-miterlimit 10
+
+    .cls-1, .cls-2, .cls-3, .cls-5
+      stroke-width 1.5px
+
+    .cls-2, .cls-4
+      fill #1d1d1b
+
+    .cls-3
+      fill #fff
+
+
+    #door
+      fill white
+      transform-origin 100% 100%
+
+    .darkness
+      transition fill 100ms linear
+
+    .open
+      fill yellow !important
+
+    .animation
+      transition transform 100ms ease-in
