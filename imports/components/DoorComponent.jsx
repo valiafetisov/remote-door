@@ -1,6 +1,5 @@
 import { Meteor } from 'meteor/meteor'
 import React from 'react'
-import { $ } from 'meteor/jquery'
 
 const DoorComponent = React.createClass({
 
@@ -10,13 +9,15 @@ const DoorComponent = React.createClass({
 
   getInitialState () {
     return {
+      doorTransform: 0,
+      doorClass: '',
       doorOpened: false
     }
   },
 
   onDown (e) {
     // console.log('onDown', e)
-    $('#door').css('transform', 'rotateY(10deg)')
+    this.setState({doorTransform: 10})
     this.start = e.clientX || e.touches[0].clientX
     this.pressed = true
   },
@@ -45,7 +46,7 @@ const DoorComponent = React.createClass({
   },
 
   move (diff) {
-    $('#door').css('transform', 'rotateY(' + diff + 'deg)')
+    this.setState({doorTransform: diff})
     if (diff >= 59) {
       this.setState({doorOpened: true})
     } else {
@@ -73,15 +74,16 @@ const DoorComponent = React.createClass({
   },
 
   closeDoor () {
-    $('#door').addClass('animation')
-    $('#door').css('transform', 'rotateY(0deg)')
+    this.setState({doorTransform: 0})
+    this.setState({doorClass: 'animation'})
     Meteor.setTimeout(() => {
-      $('#door').removeClass('animation')
+      this.setState({doorClass: ''})
     }, 200)
   },
 
   render () {
-    const style = (this.state.doorOpened) ? {'fill': 'yellow'} : {}
+    const darknessStyle = (this.state.doorOpened) ? {fill: 'yellow'} : {}
+    const doorTransformStyle = {transform: 'rotateY(' + this.state.doorTransform + 'deg)'}
     return <div
       className="DoorComponent"
       onMouseDown={this.onDown}
@@ -99,14 +101,14 @@ const DoorComponent = React.createClass({
         <polyline className="cls-1" vectorEffect="non-scaling-stroke" points="322.57 122.78 327.75 140.39 341.25 187.89 346.5 650.67 289.82 685.47" />
         <line className="cls-1" vectorEffect="non-scaling-stroke" x1="346.5" y1="650.67" x2="553.67" y2="668.92" />
         <line className="cls-1" vectorEffect="non-scaling-stroke" x1="71.07" y1="667.06" x2="761.7" y2="726.55" />
-        <polygon id="darkness" className="cls-2 darkness" style={style} vectorEffect="non-scaling-stroke" points="535.97 666.7 383.78 653.7 383.78 183.1 535.97 170.1 535.97 666.7" />
+        <polygon id="darkness" className="cls-2 darkness" style={darknessStyle} vectorEffect="non-scaling-stroke" points="535.97 666.7 383.78 653.7 383.78 183.1 535.97 170.1 535.97 666.7" />
         <polyline className="cls-1" vectorEffect="non-scaling-stroke" points="578.85 478.39 578.85 49.26 264.17 85.26 264.17 478.39" />
         <polyline className="cls-1" vectorEffect="non-scaling-stroke" points="568.22 481.53 568.22 60.48 273.8 94.73 273.8 481.53" />
-        <g id="door">
+        <g id="door" className={this.state.doorClass} style={doorTransformStyle}>
           <polygon className="cls-3" fill="white" vectorEffect="non-scaling-stroke" points="535.97 667.06 383.78 654.06 383.78 183.46 535.97 170.46 535.97 667.06" />
-          <polygon className="cls-2 darkness" style={style} vectorEffect="non-scaling-stroke" points="422.15 404.85 421.74 482.53 512.25 484.39 512.25 403.5 422.15 404.85" />
-          <polygon className="cls-2 darkness" style={style} vectorEffect="non-scaling-stroke" points="512.25 314.64 512.25 397.29 422.19 398.63 422.62 318.03 422.64 318.03 512.25 314.64" />
-          <path className="cls-2 darkness" style={style} vectorEffect="non-scaling-stroke" d="M512.25,308.58V259.42c0-26.5-21-48-45.66-48s-43.66,21.48-43.66,48l-0.28,53.28v-1Z" />
+          <polygon className="cls-2 darkness" style={darknessStyle} vectorEffect="non-scaling-stroke" points="422.15 404.85 421.74 482.53 512.25 484.39 512.25 403.5 422.15 404.85" />
+          <polygon className="cls-2 darkness" style={darknessStyle} vectorEffect="non-scaling-stroke" points="512.25 314.64 512.25 397.29 422.19 398.63 422.62 318.03 422.64 318.03 512.25 314.64" />
+          <path className="cls-2 darkness" style={darknessStyle} vectorEffect="non-scaling-stroke" d="M512.25,308.58V259.42c0-26.5-21-48-45.66-48s-43.66,21.48-43.66,48l-0.28,53.28v-1Z" />
           <circle className="cls-1" vectorEffect="non-scaling-stroke" cx="401.25" cy="461.66" r="6.15" />
         </g>
         <g id="number">
