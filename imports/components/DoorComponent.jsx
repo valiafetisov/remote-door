@@ -3,6 +3,14 @@ import React from 'react'
 
 const DoorComponent = React.createClass({
 
+  // componentDidMount () {
+  //   console.log('componentDidMount', this.props)
+  // },
+  //
+  // componentWillReceiveProps (nextProps) {
+  //   console.log('componentDidMount', nextProps)
+  // },
+
   pressed: false,
   diff: 0,
   start: 0,
@@ -82,7 +90,8 @@ const DoorComponent = React.createClass({
   },
 
   render () {
-    const darknessStyle = (this.state.doorOpened) ? {fill: 'yellow'} : {}
+    const darknessStyle = (this.props.doorStatus.status === 'open') ? {fill: 'yellow'} : {}
+    const errorStyle = (this.props.deviceStatus.status !== 'online') ? {opacity: 1} : {}
     const doorTransformStyle = {transform: 'rotateY(' + this.state.doorTransform + 'deg)'}
     return <div
       className="DoorComponent"
@@ -111,6 +120,7 @@ const DoorComponent = React.createClass({
           <path className="stroke black darkness" style={darknessStyle} vectorEffect="non-scaling-stroke" d="M512.25,308.58V259.42c0-26.5-21-48-45.66-48s-43.66,21.48-43.66,48l-0.28,53.28v-1Z" />
           <circle className="nofill stroke" vectorEffect="non-scaling-stroke" cx="401.25" cy="461.66" r="6.15" />
         </g>
+        <polygon id="error" className="stroke red" style={errorStyle} vectorEffect="non-scaling-stroke" points="535.97 666.7 383.78 653.7 383.78 183.1 535.97 170.1 535.97 666.7" />
         <g id="number">
           <path className="nofill stroke" vectorEffect="non-scaling-stroke" d="M426.1,51.56L394.45,56a1.84,1.84,0,0,1-2.1-1.83V23.76a1.84,1.84,0,0,1,1.59-1.83l31.64-4.48a1.84,1.84,0,0,1,2.1,1.83V49.74A1.84,1.84,0,0,1,426.1,51.56Z" />
           <path className="nofill stroke" vectorEffect="non-scaling-stroke" d="M433.58,19.15V54.61A1.84,1.84,0,0,1,432,56.43l-31.64,4.48" />
