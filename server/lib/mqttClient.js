@@ -1,14 +1,17 @@
 import { Meteor } from 'meteor/meteor'
 import mqtt from 'mqtt'
+import { receive } from '/server/lib/mqttSendReceive'
 
 const client = mqtt.connect(Meteor.settings.mqtt.server, Meteor.settings.mqtt)
 
 client.on('connect', function () {
-  client.subscribe('doorStatus')
+  client.subscribe('/door/status')
+  client.subscribe('/device/status')
 })
 
 client.on('message', function (topic, message) {
-  console.log('mqtt: topic, message:', topic, message.toString())
+  // console.log('mqtt: topic, message:', topic, message.toString())
+  receive(topic, message.toString())
 })
 
 client.on('error', function (error) {

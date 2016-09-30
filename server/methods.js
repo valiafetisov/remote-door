@@ -1,10 +1,9 @@
 import { Meteor } from 'meteor/meteor'
-import client from './mqttClient'
+import { send } from '/server/lib/mqttSendReceive'
 
 Meteor.methods({
-  'open' () {
-    console.log('methods: open: started')
-    client.publish('doorCommand', 'o')
+  open () {
+    send('/door/command', 'o')
     console.log('methods: open: sent')
   }
 })
