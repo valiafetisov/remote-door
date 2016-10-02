@@ -1,5 +1,11 @@
-configurations/
+# system files
+.DS_Store
+
+# node.js
 node_modules/
 npm-debug.log
 
-.DS_Store
+# application
+configurations/
+!configurations/development/settings-example.json
+ESP8266-code/configuration.h
