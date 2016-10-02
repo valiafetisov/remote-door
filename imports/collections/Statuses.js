@@ -8,10 +8,10 @@ const Statuses = new Mongo.Collection('statuses')
 //
 if (Meteor.isServer) {
   Meteor.publish('/door/status', () => {
-    return Statuses.find({subject: 'door'}, {sort: {updatedAt: -1}})
+    return Statuses.find({subject: 'door'}, {sort: {updatedAt: -1}, limit: 1})
   })
   Meteor.publish('/device/status', () => {
-    return Statuses.find({subject: 'device'}, {sort: {updatedAt: -1}})
+    return Statuses.find({subject: 'device'}, {sort: {updatedAt: -1}, limit: 1})
   })
 }
 
