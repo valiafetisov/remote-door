@@ -3,7 +3,7 @@
 Small, but practical application with single purpose: to open the door #133 in the middle of Berlin. Connects ESP8266-based relay with nice drawing of the door, that you can swipe and physically open the door. Live app with real-time updates here [133.conformity.io](http://133.conformity.io)
 
 
-## Quick start
+## Setup
 
 Project consist of two parts: ESP8266 hardware and a meteor.js-based application.
 
@@ -15,13 +15,9 @@ __To run the app:__
 __To program ESP8266 module:__
 1. Connect module to your serial adapter
 2. Add ESP support to Arduino IDE and [PubSubClient](https://github.com/knolleary/pubsubclient) library
-3. Open up [the program](ESP8266-code/ESP8266-code.ino) in Arduino IDE
-4. Build and upload
-
-
-## Description
-
-
+3. Copy [`configuration-example.h`](ESP8266-code/configuration-example.h) to `configuration.h` and fill all needed information about WIFI access point and mqtt server
+4. Open up [the program](ESP8266-code/ESP8266-code.ino) in Arduino IDE
+5. Build and upload
 
 
 ## Needed parts
