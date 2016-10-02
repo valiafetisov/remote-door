@@ -21,6 +21,19 @@
       @media notmobile
         stroke-width 2.5px
 
+    #loading
+      stroke white
+      stroke-dasharray 3, 15
+      stroke-dashoffset 0
+      transition opacity 100ms linear
+      animation dash 500ms linear infinite
+      @keyframes dash
+        to
+          stroke-dashoffset 18
+      stroke-width 3px
+      @media notmobile
+        stroke-width 4px
+
     .nofill
       fill none
 

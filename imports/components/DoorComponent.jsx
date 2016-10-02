@@ -3,14 +3,6 @@ import React from 'react'
 
 const DoorComponent = React.createClass({
 
-  // componentDidMount () {
-  //   console.log('componentDidMount', this.props)
-  // },
-  //
-  // componentWillReceiveProps (nextProps) {
-  //   console.log('componentDidMount', nextProps)
-  // },
-
   pressed: false,
   diff: 0,
   start: 0,
@@ -19,8 +11,18 @@ const DoorComponent = React.createClass({
     return {
       doorTransform: 0,
       doorClass: '',
-      doorOpened: false
+      doorOpened: false,
+      loading: false
     }
+  },
+
+  updateLoadingStatus () {
+    const loading = !Meteor.status().connected || this.props.loading
+    this.setState({ loading })
+  },
+
+  componentDidMount () {
+    Meteor.autorun(this.updateLoadingStatus)
   },
 
   onDown (e) {
@@ -95,6 +97,7 @@ const DoorComponent = React.createClass({
     const errorStyle = (this.props.deviceStatus === undefined || this.props.deviceStatus.status !== 'online')
       ? {opacity: 1} : {}
     const doorTransformStyle = {transform: 'rotateY(' + this.state.doorTransform + 'deg)'}
+    const loadingStyle = (this.state.loading === true) ? {} : {opacity: 0}
 
     return <div
       className="DoorComponent"
@@ -116,14 +119,12 @@ const DoorComponent = React.createClass({
         <polyline className="nofill stroke" vectorEffect="non-scaling-stroke" points="578.85 478.39 578.85 49.26 264.17 85.26 264.17 478.39" />
         <polyline className="nofill stroke" vectorEffect="non-scaling-stroke" points="568.22 481.53 568.22 60.48 273.8 94.73 273.8 481.53" />
         <polygon id="darkness" className="stroke black darkness" style={darknessStyle} vectorEffect="non-scaling-stroke" points="535.97 666.7 383.78 653.7 383.78 183.1 535.97 170.1 535.97 666.7" />
+        <polygon id="error" className="stroke red" style={errorStyle} vectorEffect="non-scaling-stroke" points="535.97 666.7 383.78 653.7 383.78 183.1 535.97 170.1 535.97 666.7" />
         <g id="door" className={this.state.doorClass} style={doorTransformStyle}>
-          <polygon className="stroke white" vectorEffect="non-scaling-stroke" points="535.97 667.06 383.78 654.06 383.78 183.46 535.97 170.46 535.97 667.06" />
-          <polygon className="stroke black darkness" style={darknessStyle} vectorEffect="non-scaling-stroke" points="422.15 404.85 421.74 482.53 512.25 484.39 512.25 403.5 422.15 404.85" />
-          <polygon className="stroke black darkness" style={darknessStyle} vectorEffect="non-scaling-stroke" points="512.25 314.64 512.25 397.29 422.19 398.63 422.62 318.03 422.64 318.03 512.25 314.64" />
-          <path className="stroke black darkness" style={darknessStyle} vectorEffect="non-scaling-stroke" d="M512.25,308.58V259.42c0-26.5-21-48-45.66-48s-43.66,21.48-43.66,48l-0.28,53.28v-1Z" />
+          <path className="stroke white" vectorEffect="non-scaling-stroke" d="M383.78,183.46v470.6l152.18,13V170.46ZM512.25,484.39l-90.51-1.87,0.41-77.67,90.1-1.35v80.89Zm0-87.11-90.06,1.35,0.43-80.6h0l89.61-3.39v8.65Zm-89.6-85.59,0.28-52.28c0-26.5,19-48,43.66-48s45.66,21.48,45.66,48l0.08,49.19Z" />
           <circle className="nofill stroke" vectorEffect="non-scaling-stroke" cx="401.25" cy="461.66" r="6.15" />
         </g>
-        <polygon id="error" className="stroke red" style={errorStyle} vectorEffect="non-scaling-stroke" points="535.97 666.7 383.78 653.7 383.78 183.1 535.97 170.1 535.97 666.7" />
+        <polygon id="loading" style={loadingStyle} className="stroke nofill" points="289.82 685.47 289.82 106.84 553.67 79.36 553.67 708.63 289.82 685.47" />
         <g id="number">
           <path className="nofill stroke" vectorEffect="non-scaling-stroke" d="M426.1,51.56L394.45,56a1.84,1.84,0,0,1-2.1-1.83V23.76a1.84,1.84,0,0,1,1.59-1.83l31.64-4.48a1.84,1.84,0,0,1,2.1,1.83V49.74A1.84,1.84,0,0,1,426.1,51.56Z" />
           <path className="nofill stroke" vectorEffect="non-scaling-stroke" d="M433.58,19.15V54.61A1.84,1.84,0,0,1,432,56.43l-31.64,4.48" />
