@@ -90,9 +90,12 @@ const DoorComponent = React.createClass({
   },
 
   render () {
-    const darknessStyle = (this.props.doorStatus.status === 'open') ? {fill: 'yellow'} : {}
-    const errorStyle = (this.props.deviceStatus.status !== 'online') ? {opacity: 1} : {}
+    const darknessStyle = (this.props.doorStatus !== undefined && this.props.doorStatus.status === 'open')
+      ? {fill: 'yellow'} : {}
+    const errorStyle = (this.props.deviceStatus === undefined || this.props.deviceStatus.status !== 'online')
+      ? {opacity: 1} : {}
     const doorTransformStyle = {transform: 'rotateY(' + this.state.doorTransform + 'deg)'}
+
     return <div
       className="DoorComponent"
       onMouseDown={this.onDown}
