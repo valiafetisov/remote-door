@@ -3,7 +3,8 @@
   "private": true,
   "scripts": {
     "start": "meteor -p 5500 --settings configurations/development/settings.json",
-    "deploy": "cd configurations/production && mup deploy && say deployed"
+    "deploy": "cd configurations/production && mup deploy && say deployed",
+    "mqtt": "/usr/local/sbin/mosquitto -c /usr/local/etc/mosquitto/mosquitto.conf"
   },
   "dependencies": {
     "bufferutil": "^1.2.1",
