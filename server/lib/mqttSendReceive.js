@@ -1,12 +1,13 @@
 import Statuses from '/imports/collections/Statuses'
 import client from '/server/lib/mqttClient'
 
-const send = function (topic, message) {
+const send = function (topic, message, clientInfo) {
   client.publish(topic, message)
   Statuses.insert({
     subject: 'door',
     status: 'commandSent',
-    commandSentAt: new Date()
+    commandSentAt: new Date(),
+    ...clientInfo
   })
 }
 
