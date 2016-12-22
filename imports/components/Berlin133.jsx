@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Door133 = function(props) {
+const Berlin133 = function(props) {
   const darknessStyle = (props.isOpen === true) ? {fill: 'yellow'} : {}
   const errorStyle = (props.isOnline !== true) ? {opacity: 1} : {}
   const loadingStyle = (props.isLoading === true) ? {} : {opacity: 0}
@@ -34,4 +34,4 @@ const Door133 = function(props) {
   </svg>
 }
 
-export default Door133
+export default Berlin133

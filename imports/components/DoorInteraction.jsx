@@ -1,6 +1,16 @@
 import { Meteor } from 'meteor/meteor'
 import React from 'react'
-import Door133 from '/imports/components/Door133'
+
+//
+// select door component according to settings.json
+//
+const DoorComponentName = (
+  Meteor.settings.public == null ||
+  Meteor.settings.public.doorComponent == null
+) ? 'Berlin133' : Meteor.settings.public.doorComponent
+import Berlin133 from '/imports/components/Berlin133'
+import Lognes13 from '/imports/components/Lognes13'
+const Door = (DoorComponentName === 'Berlin133') ? Berlin133 : Lognes13
 
 const DoorInteraction = React.createClass({
 
@@ -102,7 +112,7 @@ const DoorInteraction = React.createClass({
       onMouseMove={this.onMove}
       onTouchMove={this.onMove}
     >
-      <Door133
+      <Door
         isOpen={this.props.doorStatus != null && this.props.doorStatus.status === 'open'}
         isOnline={this.props.deviceStatus != null && this.props.deviceStatus.status === 'online'}
         isLoading={this.state.loading}
