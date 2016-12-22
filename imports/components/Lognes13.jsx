@@ -4,7 +4,7 @@ const Lognes13 = function(props) {
   const intercomStyle = (props.isOnline !== true)
     ? {fill: 'red'}
     : (props.isOpen === true)
-      ? {fill: 'yellow'}
+      ? {fill: 'lightgreen'}
       : {fill: 'white'}
   const loadingStyle = (props.isLoading === true) ? {} : {opacity: 0}
   const doorTransformStyle = (props.angle >= 0) ? {transform: 'rotateY(' + props.angle + 'deg)'} : {}
