@@ -1,16 +1,13 @@
 import { Meteor } from 'meteor/meteor'
 import React from 'react'
+import prefix from '/imports/prefix'
 
 //
 // select door component according to settings.json
 //
-const DoorComponentName = (
-  Meteor.settings.public == null ||
-  Meteor.settings.public.doorComponent == null
-) ? 'Berlin133' : Meteor.settings.public.doorComponent
 import Berlin133 from '/imports/components/Berlin133'
 import Lognes13 from '/imports/components/Lognes13'
-const Door = (DoorComponentName === 'Berlin133') ? Berlin133 : Lognes13
+const Door = (prefix === 'Berlin133') ? Berlin133 : Lognes13
 
 const DoorInteraction = React.createClass({
 
