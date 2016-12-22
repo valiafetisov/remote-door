@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor'
 import { createContainer } from 'meteor/react-meteor-data'
 import Statuses from '/imports/collections/Statuses'
-import DoorComponent from '/imports/components/DoorComponent.jsx'
+import DoorInteraction from '/imports/components/DoorInteraction'
 
 const DoorContainer = createContainer(() => {
   const doorHandle = Meteor.subscribe('/door/status')
@@ -15,6 +15,6 @@ const DoorContainer = createContainer(() => {
     doorStatus,
     deviceStatus
   }
-}, DoorComponent)
+}, DoorInteraction)
 
 export default DoorContainer
