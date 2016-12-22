@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Door13 = function(props) {
+const Lognes13 = function(props) {
   const intercomStyle = (props.isOnline !== true)
     ? {fill: 'red'}
     : (props.isOpen === true)
@@ -69,4 +69,4 @@ const Door13 = function(props) {
   </svg>
 }
 
-export default Door13
+export default Lognes13
