@@ -8,11 +8,14 @@ import prefix from '/imports/prefix'
 import Berlin133 from '/imports/components/Berlin133'
 import Lognes13 from '/imports/components/Lognes13'
 import Cologne31 from '/imports/components/Cologne31'
-const Door = (prefix === 'Berlin133')
-  ? Berlin133
-  : (prefix === 'Lognes13')
-    ? Lognes13
-    : Cologne31
+import Cologne66 from '/imports/components/Cologne66'
+const Doors = {
+  Berlin133,
+  Lognes13,
+  Cologne31,
+  Cologne66
+}
+const Door = Doors[prefix] ? Doors[prefix] : null
 
 const DoorInteraction = React.createClass({
 
