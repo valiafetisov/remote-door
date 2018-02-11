@@ -1,13 +1,14 @@
 {
     "name": "Door 66",
+    "short_name": "Door 66",
     "icons": [
         {
-            "src": "/favicons/Cologne66/android-chrome-192x192.png",
+            "src": "/favicons/Cologne66/android-chrome-192x192.png?v=01",
             "sizes": "192x192",
             "type": "image/png"
         },
         {
-            "src": "/favicons/Cologne66/android-chrome-512x512.png",
+            "src": "/favicons/Cologne66/android-chrome-512x512.png?v=01",
             "sizes": "512x512",
             "type": "image/png"
         }
