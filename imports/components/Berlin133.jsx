@@ -1,10 +1,13 @@
 import React from 'react'
 
-const Berlin133 = function(props) {
+const SHIFT = 295
+
+const Berlin133 = function (props) {
   const darknessStyle = (props.isOpen === true) ? {fill: 'yellow'} : {}
   const errorStyle = (props.isOnline !== true) ? {opacity: 1} : {}
   const loadingStyle = (props.isLoading === true) ? {} : {opacity: 0}
-  const doorTransformStyle = (props.angle >= 0) ? {transform: 'rotateY(' + props.angle + 'deg)'} : {}
+  // const doorTransformStyle = (props.angle >= 0) ? {transform: 'rotateY(' + props.angle + 'deg)'} : {}
+  const scaleX = 1 - props.angle * 0.007
   const doorAnimationClass = (props.isAnimating === true) ? 'animation' : ''
 
   return <svg className="door" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 831.23 742.3">
@@ -19,9 +22,13 @@ const Berlin133 = function(props) {
     <polyline className="nofill stroke" vectorEffect="non-scaling-stroke" points="568.22 481.53 568.22 60.48 273.8 94.73 273.8 481.53" />
     <polygon id="darkness" className="stroke black darkness" style={darknessStyle} vectorEffect="non-scaling-stroke" points="535.97 666.7 383.78 653.7 383.78 183.1 535.97 170.1 535.97 666.7" />
     <polygon id="error" className="stroke red" style={errorStyle} vectorEffect="non-scaling-stroke" points="535.97 666.7 383.78 653.7 383.78 183.1 535.97 170.1 535.97 666.7" />
-    <g id="door" className={doorAnimationClass} style={doorTransformStyle}>
-      <path className="stroke white" vectorEffect="non-scaling-stroke" d="M383.78,183.46v470.6l152.18,13V170.46ZM512.25,484.39l-90.51-1.87,0.41-77.67,90.1-1.35v80.89Zm0-87.11-90.06,1.35,0.43-80.6h0l89.61-3.39v8.65Zm-89.6-85.59,0.28-52.28c0-26.5,19-48,43.66-48s45.66,21.48,45.66,48l0.08,49.19Z" />
-      <circle className="nofill stroke" vectorEffect="non-scaling-stroke" cx="401.25" cy="461.66" r="6.15" />
+    <g transform={'translate(-' + SHIFT + ')'}>
+      <g id="door" transform={'scale(' + scaleX + ' 1)'} className={doorAnimationClass}>
+        <g transform={'translate(' + SHIFT + ')'}>
+          <path className="stroke white" vectorEffect="non-scaling-stroke" d="M383.78,183.46v470.6l152.18,13V170.46ZM512.25,484.39l-90.51-1.87,0.41-77.67,90.1-1.35v80.89Zm0-87.11-90.06,1.35,0.43-80.6h0l89.61-3.39v8.65Zm-89.6-85.59,0.28-52.28c0-26.5,19-48,43.66-48s45.66,21.48,45.66,48l0.08,49.19Z" />
+          <circle className="nofill stroke" vectorEffect="non-scaling-stroke" cx="401.25" cy="461.66" r="6.15" />
+        </g>
+      </g>
     </g>
     <polygon id="loading" style={loadingStyle} className="stroke nofill" points="289.82 685.47 289.82 106.84 553.67 79.36 553.67 708.63 289.82 685.47" />
     <g id="number">
