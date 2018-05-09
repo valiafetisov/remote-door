@@ -1,5 +1,7 @@
 import React from 'react'
 
+const SHIFT = 860
+
 const Cologne66 = function (props) {
   const intercomStyle = (props.isOnline !== true)
     ? {fill: 'red'}
@@ -7,17 +9,21 @@ const Cologne66 = function (props) {
       ? {fill: 'lightgreen'}
       : {fill: 'white'}
   const loadingStyle = (props.isLoading === true) ? {} : {opacity: 0}
-  const doorTransformStyle = (props.angle >= 0) ? {transform: 'rotateY(' + props.angle * 0.9 + 'deg)'} : {}
+  const scaleX = 1 - props.angle * 0.006
   const doorAnimationClass = (props.isAnimating === true) ? 'animation' : ''
 
   return <svg id="Cologne66" className="door" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080">
     <polygon id="intercom" style={intercomStyle} className="cls-1" points="837.18 521.57 837.18 601.2 815.87 602.32 815.87 520.45 837.18 521.57" />
-    <g id="door" style={doorTransformStyle} className={doorAnimationClass}>
-      <path className="cls-2" d="M862.26,354.41a1,1,0,0,0-1,1l-3.37,576.21a0.51,0.51,0,0,0,.46.51l225.54,21.83V345.66Zm197,556.35L881.55,896.18l3.37-245.63L1059.24,655V910.76ZM1060.37,627l-175.44-3.36V379.12l176.57-5.61Z" />
-      <path className="cls-3" d="M881.8,679.09a1.59,1.59,0,0,0,.89-1.39l-0.06-132.59a1.74,1.74,0,0,0-1.09-1.68c-1-.39-3.59-0.73-4.89,0a1.58,1.58,0,0,0-.75,1.35l0,133a1.53,1.53,0,0,0,.83,1.42A7.08,7.08,0,0,0,881.8,679.09Z" />
-      <g>
-        <path className="cls-3" d="M864.06,669.21a4.32,4.32,0,0,1,5.7.84,2.1,2.1,0,0,1,.53,1.39v10.69a1.54,1.54,0,0,1-.95,1.44,6.18,6.18,0,0,1-5,0,1.32,1.32,0,0,1-.75-1.18V670.21A1.18,1.18,0,0,1,864.06,669.21Z" />
-        <line className="cls-3" x1="866.93" y1="671.86" x2="866.93" y2="679.71" />
+    <g transform={'translate(-' + SHIFT + ')'}>
+      <g id="door" transform={'scale(' + scaleX + ' 1)'} className={doorAnimationClass}>
+        <g transform={'translate(' + SHIFT + ')'}>
+          <path className="cls-2" d="M862.26,354.41a1,1,0,0,0-1,1l-3.37,576.21a0.51,0.51,0,0,0,.46.51l225.54,21.83V345.66Zm197,556.35L881.55,896.18l3.37-245.63L1059.24,655V910.76ZM1060.37,627l-175.44-3.36V379.12l176.57-5.61Z" />
+          <path className="cls-3" d="M881.8,679.09a1.59,1.59,0,0,0,.89-1.39l-0.06-132.59a1.74,1.74,0,0,0-1.09-1.68c-1-.39-3.59-0.73-4.89,0a1.58,1.58,0,0,0-.75,1.35l0,133a1.53,1.53,0,0,0,.83,1.42A7.08,7.08,0,0,0,881.8,679.09Z" />
+          <g>
+            <path className="cls-3" d="M864.06,669.21a4.32,4.32,0,0,1,5.7.84,2.1,2.1,0,0,1,.53,1.39v10.69a1.54,1.54,0,0,1-.95,1.44,6.18,6.18,0,0,1-5,0,1.32,1.32,0,0,1-.75-1.18V670.21A1.18,1.18,0,0,1,864.06,669.21Z" />
+            <line className="cls-3" x1="866.93" y1="671.86" x2="866.93" y2="679.71" />
+          </g>
+        </g>
       </g>
     </g>
     <g id="everything-2" data-name="everything">
