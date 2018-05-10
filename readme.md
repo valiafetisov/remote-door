@@ -8,7 +8,7 @@ Small, but practical application with single purpose: to open the door #133 in t
 One of the challenges was to find a solution for several UI problems which appears in every IoT project. It always unclear for users what is going on.
 
   <img src="https://cdn.rawgit.com/valiafetisov/remote-door/master/public/showcase/ui-connecting.svg" width="280" height="280">
-  <img src="https://cdn.rawgit.com/valiafetisov/remote-door/master/public/showcase/ui-open.svg" width="280" height="280">
+  <img src="https://cdn.rawgit.com/valiafetisov/remote-door/master/public/showcase/ui-open-close.svg" width="280" height="280">
   <img src="https://cdn.rawgit.com/valiafetisov/remote-door/master/public/showcase/ui-error.svg" width="280" height="280">
 
 
