@@ -12,7 +12,7 @@ One of the challenges was to find a solution for several UI problems which appea
 
 ## Setup
 
-Project consist of two parts: ESP-01 module + relay and a meteor.js-based application. Those two parts connected with each other via MQTT broker.
+Project consist of two parts: ESP-based WiFi relay and a meteor.js-based application. Those two parts connected with each other via MQTT broker.
 
 __To run the app:__
 
@@ -28,11 +28,6 @@ __To flash ESP8266 module:__
 4. Connect module to your serial adapter, build and upload
 
 
-## Parts list
+## Hardware
 
-| Part               | Quantity    | Price       |
-|--------------------|:-----------:|------------:|
-| ESP-01             | 1           |        $2.5 |
-| 3.3v relay module  | 1           |          $5 |
-| 3.3v power supply  | 1           |          $8 |
-|                    | __Summary__ |       $15.5 |
+The firmware designed to be run on a $5 Sonoff Basic module, that should be reflashed with the provided firmware.
