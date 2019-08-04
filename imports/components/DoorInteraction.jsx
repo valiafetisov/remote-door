@@ -10,8 +10,10 @@ import Lognes13 from '/imports/components/Lognes13'
 import Cologne31 from '/imports/components/Cologne31'
 import Cologne66 from '/imports/components/Cologne66'
 import Belgrade4 from '/imports/components/Belgrade4'
+import Dusseldorf65 from '/imports/components/Dusseldorf65'
 
 const Doors = {
+  Dusseldorf65,
   Berlin133,
   Lognes13,
   Cologne31,
@@ -66,7 +68,8 @@ const DoorInteraction = React.createClass({
   },
 
   getDiff (stop) {
-    let diff = stop - this.start
+    const swipeLeft = Meteor.settings.public.swipeLeft
+    let diff = swipeLeft ? this.start - stop : stop - this.start
     diff += 10
     if (diff <= 0) diff = 0
     if (diff > 60) diff = 60
