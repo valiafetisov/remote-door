@@ -15,6 +15,12 @@ const RootLayout = React.createClass({
     DocHead.addMeta({name: 'msapplication-config', content: '/favicons/' + prefix + '/browserconfig.xml'})
     DocHead.addMeta({name: 'theme-color', content: '#ffffff'})
 
+    if (Meteor.settings.public.number) {
+      DocHead.addMeta({property: 'og:title', content: 'Door #' + Meteor.settings.public.number})
+      DocHead.addMeta({property: 'og:image', content: 'http://' + Meteor.settings.public.number + '.conformity.io/screenshots/' + prefix + '.png'})
+      DocHead.addMeta({property: 'og:url', content: 'http://' + Meteor.settings.public.number + '.conformity.io'})
+    }
+
     return <div className="RootLayout">
       {this.props.content}
     </div>
