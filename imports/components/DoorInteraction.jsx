@@ -11,8 +11,10 @@ import Cologne31 from '/imports/components/Cologne31'
 import Cologne66 from '/imports/components/Cologne66'
 import Belgrade4 from '/imports/components/Belgrade4'
 import Dusseldorf65 from '/imports/components/Dusseldorf65'
+import Istanbul126 from '/imports/components/Istanbul126'
 
 const Doors = {
+  Istanbul126,
   Dusseldorf65,
   Berlin133,
   Lognes13,
