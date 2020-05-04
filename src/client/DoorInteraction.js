@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import DoorNumber133 from './DoorNumber133'
-import DoorNumber13 from './DoorNumber13'
-import DoorNumber31 from './DoorNumber31'
-import DoorNumber66 from './DoorNumber66'
-import DoorNumber4 from './DoorNumber4'
-import DoorNumber65 from './DoorNumber65'
-import DoorNumber126 from './DoorNumber126'
+import DoorNumber133 from './doors/DoorNumber133'
+import DoorNumber13 from './doors/DoorNumber13'
+import DoorNumber31 from './doors/DoorNumber31'
+import DoorNumber66 from './doors/DoorNumber66'
+import DoorNumber4 from './doors/DoorNumber4'
+import DoorNumber65 from './doors/DoorNumber65'
+import DoorNumber126 from './doors/DoorNumber126'
 
 const DoorComponents = {
   DoorNumber133,
@@ -79,7 +79,8 @@ class DoorInteraction extends Component {
   }
 
   openDoor = () => {
-    // call('open')
+    const { openDoor } = this.props
+    openDoor()
   }
 
   closeDoor = () => {
@@ -97,9 +98,9 @@ class DoorInteraction extends Component {
     const Door = DoorComponents[componentName] || null
     return (
       <div
+        className="DoorInteraction"
         role="button"
         tabIndex="0"
-        className="DoorInteraction"
         onMouseDown={this.onDown}
         onTouchStart={this.onDown}
         onMouseUp={this.onUp}
@@ -121,7 +122,8 @@ class DoorInteraction extends Component {
 
 DoorInteraction.propTypes = {
   doorStatus: PropTypes.string.isRequired,
-  deviceStatus: PropTypes.string.isRequired
+  deviceStatus: PropTypes.string.isRequired,
+  openDoor: PropTypes.func.isRequired
 }
 
 export default DoorInteraction

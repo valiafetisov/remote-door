@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Door from './doors'
+import DoorContainer from './DoorContainer'
 import './index.styl'
 
-ReactDOM.render(<Door />, document.getElementById('root'))
+ReactDOM.render(<DoorContainer />, document.getElementById('root'))
