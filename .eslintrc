@@ -8,7 +8,9 @@
   "rules": {
     "no-console": "off",
     "comma-dangle": "off",
+    "no-nested-ternary": "off",
     "react/jsx-filename-extension": "off",
+    "func-names": ["error", "as-needed"],
     "semi": ["error", "never"]
   }
 }
