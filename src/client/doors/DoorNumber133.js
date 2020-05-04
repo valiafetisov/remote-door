@@ -3,10 +3,7 @@ import PropTypes from 'prop-types'
 
 const SHIFT = 295
 
-const DoorNumber133 = function (props) {
-  const {
-    isOnline, isOpen, isLoading, isAnimating, angle
-  } = props
+const DoorNumber133 = function ({ isOnline, isOpen, isLoading, isAnimating, angle }) {
   const darknessStyle = (isOpen === true) ? { fill: 'yellow' } : {}
   const errorStyle = (isOnline !== true) ? { opacity: 1 } : {}
   const loadingStyle = (isLoading === true) ? {} : { opacity: 0 }

@@ -1,10 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const DoorNumber4 = function (props) {
-  const {
-    isOnline, isOpen, isLoading, isAnimating, angle
-  } = props
+const DoorNumber4 = function ({ isOnline, isOpen, isLoading, isAnimating, angle }) {
   const intercomStyle = (isOnline !== true)
     ? { fill: 'red' }
     : (isOpen === true)

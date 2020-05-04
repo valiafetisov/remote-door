@@ -4,10 +4,7 @@ import PropTypes from 'prop-types'
 const isSafari = typeof navigator !== 'undefined' && !!navigator.userAgent.match(/Version\/[\d.]+.*Safari/)
 const SHIFT = isSafari ? 480 : -740
 
-const DoorNumber65 = function (props) {
-  const {
-    isOnline, isOpen, isLoading, isAnimating, angle
-  } = props
+const DoorNumber65 = function ({ isOnline, isOpen, isLoading, isAnimating, angle }) {
   const intercomStyle = (isOnline !== true)
     ? { fill: 'red' }
     : (isOpen === true)

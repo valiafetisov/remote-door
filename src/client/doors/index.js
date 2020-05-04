@@ -98,7 +98,7 @@ class DoorInteraction extends Component {
     return (
       <div
         role="button"
-        tabindex="0"
+        tabIndex="0"
         className="DoorInteraction"
         onMouseDown={this.onDown}
         onTouchStart={this.onDown}

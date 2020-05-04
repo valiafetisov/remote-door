@@ -10,6 +10,7 @@
     "comma-dangle": "off",
     "no-nested-ternary": "off",
     "react/jsx-filename-extension": "off",
+    "object-curly-newline": "off",
     "func-names": ["error", "as-needed"],
     "semi": ["error", "never"]
   }
