@@ -1,6 +1,7 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
+const nib = require('nib')
 
 const outputDirectory = 'dist'
 
@@ -24,6 +25,19 @@ module.exports = {
         use: ['style-loader', 'css-loader']
       },
       {
+        test: /\.styl$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          {
+            loader: 'stylus-loader',
+            options: {
+              use: [nib()],
+            },
+          },
+        ],
+      },
+      {
         test: /\.(png|woff|woff2|eot|ttf|svg)$/,
         loader: 'url-loader?limit=100000'
       }
@@ -33,11 +47,10 @@ module.exports = {
     extensions: ['*', '.js', '.jsx']
   },
   devServer: {
-    port: 3000,
-    open: true,
+    port: 7001,
     historyApiFallback: true,
     proxy: {
-      '/api': 'http://localhost:8080'
+      '/api': 'http://localhost:7002'
     }
   },
   plugins: [
