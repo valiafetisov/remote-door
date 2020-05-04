@@ -1,9 +1,15 @@
 const path = require('path')
+const nib = require('nib')
+const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
-const nib = require('nib')
+const configuration = require('./configuration.json')
 
 const outputDirectory = 'dist'
+const hostToComponentMapping = Object.keys(configuration).reduce((obj, host) => ({
+  ...obj,
+  [host]: configuration[host].component
+}), {})
 
 module.exports = {
   entry: ['babel-polyfill', './src/client/index.js'],
@@ -57,6 +63,10 @@ module.exports = {
     new CleanWebpackPlugin([outputDirectory]),
     new HtmlWebpackPlugin({
       template: './public/index.html'
+    }),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
+      'process.env.doors': JSON.stringify(hostToComponentMapping)
     })
   ]
 }

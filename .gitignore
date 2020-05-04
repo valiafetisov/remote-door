@@ -6,6 +6,7 @@ node_modules/
 npm-debug.log
 
 # application
+/configuration.json
 configurations/**/*
 !configurations/development/settings-example.json
 ESP8266-code/configuration.h

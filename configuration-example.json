@@ -1,0 +1,6 @@
+{
+  "localhost": {
+    "component": "DoorNumber66",
+    "mqtt": "mqtt://localhost:1883/doorprefix"
+  }
+}
