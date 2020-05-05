@@ -17,6 +17,7 @@ const DoorComponents = {
   DoorNumber65,
   DoorNumber126,
 }
+const CONFIGURATION = process.env.doors[window.location.hostname]
 
 class DoorInteraction extends Component {
   pressed = false
@@ -52,8 +53,7 @@ class DoorInteraction extends Component {
   }
 
   getDiff = (stop) => {
-    const swipeLeft = false
-    let diff = swipeLeft ? this.start - stop : stop - this.start
+    let diff = CONFIGURATION.swipeLeft ? this.start - stop : stop - this.start
     diff += 10
     if (diff <= 0) diff = 0
     if (diff > 60) diff = 60
@@ -93,7 +93,7 @@ class DoorInteraction extends Component {
   render() {
     const { isLoading, isOnline, isOpen } = this.props
     const { isAnimating, doorTransform } = this.state
-    const componentName = process.env.doors[window.location.hostname]
+    const componentName = CONFIGURATION.component
     if (!componentName || !DoorComponents[componentName]) return null
     const Door = DoorComponents[componentName]
     return (

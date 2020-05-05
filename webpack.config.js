@@ -8,7 +8,7 @@ const configuration = require('./configuration.json')
 const outputDirectory = 'dist'
 const hostToComponentMapping = Object.keys(configuration).reduce((obj, host) => ({
   ...obj,
-  [host]: configuration[host].component
+  [host]: configuration[host].public
 }), {})
 
 module.exports = {
