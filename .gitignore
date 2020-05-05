@@ -10,3 +10,4 @@ npm-debug.log
 configurations/**/*
 !configurations/development/settings-example.json
 ESP8266-code/configuration.h
+/dist

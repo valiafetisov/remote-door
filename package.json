@@ -6,6 +6,8 @@
   "scripts": {
     "build": "webpack --mode production",
     "start": "npm run build && node src/server/index.js",
+    "upload": "rsync -av --delete . root@conformity.io:/opt/remote-doors --exclude '.[!.]*' --exclude 'node_modules'",
+    "deploy": "npm run build && npm run upload",
     "client": "webpack-dev-server --mode development --devtool inline-source-map --hot",
     "server": "nodemon src/server/index.js",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
