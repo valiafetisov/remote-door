@@ -18,6 +18,7 @@ class Door {
   }
 
   openTheDoor = () => {
+    console.log('openTheDoor', this.host, this.outTopic)
     this.client.publish(this.outTopic, 'o', { qos: 2 })
   }
 
@@ -34,6 +35,7 @@ class Door {
 
   onNewMessage = (mqttTopic, mqttMessage) => {
     const mqttMessageString = mqttMessage.toString()
+    console.log('onNewMessage', this.host, mqttTopic, mqttMessageString)
     if (mqttTopic.endsWith('/door/status')) {
       this.callbacks.forEach((callback) => {
         callback('open', mqttMessageString === 'open')
