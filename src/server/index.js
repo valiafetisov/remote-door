@@ -2,7 +2,7 @@ const url = require('url')
 const express = require('express')
 const http = require('http')
 const socketio = require('socket.io')
-const openTheDoor = require('./mqtt')
+const doors = require('./doors')
 
 const PORT = process.env.PORT || 7002
 const app = express()
@@ -14,12 +14,16 @@ server.listen(PORT, () => console.log(`Listening on port ${PORT}!`))
 app.use(express.static('dist'))
 
 io.on('connection', (socket) => {
-  // socket.send({ hello: 'world' })
-  socket.on('message', (message) => {
-    const referer = url.parse(socket.handshake.headers.referer)
-    const { hostname } = referer
-    if (message === 'open') {
-      openTheDoor(hostname)
-    }
+  const { hostname } = url.parse(socket.handshake.headers.referer)
+  if (!doors[hostname]) return
+
+  const doorListener = (type, status) => {
+    socket.emit(type, status)
+  }
+  doors[hostname].addListener(doorListener)
+  socket.on('disconnect', () => {
+    doors[hostname].removeListener(doorListener)
   })
+
+  socket.on('open', doors[hostname].openTheDoor)
 })

@@ -29,8 +29,7 @@ class DoorInteraction extends Component {
     super(props)
     this.state = {
       doorTransform: 0,
-      isAnimating: false,
-      loading: false
+      isAnimating: false
     }
   }
 
@@ -92,8 +91,8 @@ class DoorInteraction extends Component {
   }
 
   render() {
-    const { doorStatus, deviceStatus } = this.props
-    const { isAnimating, doorTransform, loading } = this.state
+    const { isLoading, isOnline, isOpen } = this.props
+    const { isAnimating, doorTransform } = this.state
     const componentName = process.env.doors[window.location.hostname]
     const Door = DoorComponents[componentName] || null
     return (
@@ -109,9 +108,9 @@ class DoorInteraction extends Component {
         onTouchMove={this.onMove}
       >
         <Door
-          isOpen={doorStatus && doorStatus === 'open'}
-          isOnline={deviceStatus && deviceStatus === 'online'}
-          isLoading={loading}
+          isLoading={isLoading}
+          isOnline={isOnline}
+          isOpen={isOpen}
           isAnimating={isAnimating}
           angle={doorTransform}
         />
@@ -121,8 +120,9 @@ class DoorInteraction extends Component {
 }
 
 DoorInteraction.propTypes = {
-  doorStatus: PropTypes.string.isRequired,
-  deviceStatus: PropTypes.string.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  isOnline: PropTypes.bool.isRequired,
+  isOpen: PropTypes.bool.isRequired,
   openDoor: PropTypes.func.isRequired
 }
 
