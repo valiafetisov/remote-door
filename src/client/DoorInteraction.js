@@ -94,7 +94,8 @@ class DoorInteraction extends Component {
     const { isLoading, isOnline, isOpen } = this.props
     const { isAnimating, doorTransform } = this.state
     const componentName = process.env.doors[window.location.hostname]
-    const Door = DoorComponents[componentName] || null
+    if (!componentName || !DoorComponents[componentName]) return null
+    const Door = DoorComponents[componentName]
     return (
       <div
         className="DoorInteraction"
