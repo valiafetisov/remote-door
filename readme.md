@@ -1,26 +1,23 @@
-## General info
+# Remote door
 
-Small full stack application with a single purpose: to open entrance door hooked up to the internet-connected relay. The app intends to design cartoon-like interface of the door without sacrificing usability. It is a drawing of a door, that user can swipe and open the real door. Live example (actual door is somewhere in Berlin) can be found here: [133.conformity.io](http://133.conformity.io).
+Small full stack application with a single purpose: to open entrance door hooked up to the internet-connected relay. The app intends to design cartoon-like interface of the door without sacrificing usability. It is a drawing of a door, that user can swipe and open the real door. Live example (actual door is somewhere in Berlin) can be found here: [https://133.conformity.io](https://133.conformity.io).
 
-## UI states
-
-One of the challenges was to find a solution for several UI problems which appears in every IoT project: show connectivity, actual state of the door and prevent user confusion, when they are not familiar with the interface:
+One of the challenges was to prevent user confusion by clear communication of the door states without use of words. The door have `loading`, `open` or `offline` states represented graphically:
 
   <img src="https://cdn.rawgit.com/valiafetisov/remote-door/master/public/showcase/ui-connecting.svg" width="280" height="280"><img src="https://cdn.rawgit.com/valiafetisov/remote-door/master/public/showcase/ui-open-close.svg" width="280" height="280"><img src="https://cdn.rawgit.com/valiafetisov/remote-door/master/public/showcase/ui-error.svg" width="280" height="280">
 
 ## Code Structure
 
-Project consist of three parts:
+The project consist of two main parts, connected through MQTT brocker
 
-  1. ESP-based wifi-connected relay (code can be found in the [`firmware`](./firmware) folder)
-  2. MQTT brocker (for example [mosquitto](https://mosquitto.org)), but public brocker can also be used
-  3. Web application located in [`src`](./src) folder
+  - [`firmware`](./firmware) – ESP-based internet-connected relay
+  - [`src`](./src) – Node.js + React.js full stack web application
 
 ## Hardware
 
-The project is designed to be run on a $5 Sonoff Basic module, that should be modified and reflashed with the provided firmware.
+The project is designed to run on a $5 Sonoff Basic module, that should be modified and reflashed with the provided firmware.
 
-## Make your own door
+## How to make your own door
 
 1. Install MQTT-brocker or register on a [public one](https://github.com/mqtt/mqtt.github.io/wiki/public_brokers)
 2. Setup hardware (Sonoff or any other ESP-based board would work)
