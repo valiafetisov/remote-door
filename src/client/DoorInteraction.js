@@ -22,6 +22,8 @@ class DoorInteraction extends Component {
   onDown = (e) => {
     this.setState({ isTouched: true })
     this.setState({ doorTransform: 10 })
+    const { isLoading } = this.props
+    if (isLoading) return
     this.start = e.clientX || e.touches[0].clientX
     this.pressed = true
   }
@@ -49,6 +51,11 @@ class DoorInteraction extends Component {
   }
 
   swipeStop = (diff) => {
+    const { isLoading } = this.props
+    if (isLoading) {
+      this.closeDoor()
+      return
+    }
     if (diff < 59) {
       this.closeDoor()
     } else {
@@ -96,6 +103,7 @@ class DoorInteraction extends Component {
 }
 
 DoorInteraction.propTypes = {
+  isLoading: PropTypes.bool.isRequired,
   componentName: PropTypes.string.isRequired,
   swipeLeft: PropTypes.bool.isRequired,
   openDoor: PropTypes.func.isRequired
