@@ -42,4 +42,4 @@ The project is designed to run on a $5 Sonoff Basic module, that should be modif
     6. Add newly created component to the list in [`DoorSelector.js`](./src/client/DoorSelector.js)
     7. Edit `componentName` property inside `configuration.json` to replace it with a newly created component name
     8. Debug problems [`localhost:7001`](http://localhost:7001) using browser console
-5. Deploy the project. [`pm2.config.js`](./pm2.config.js) can be used to start keep server-side code running
+5. Deploy the project. [`src/pm2.config.js`](./src/pm2.config.js) can be used to start keep server-side code running

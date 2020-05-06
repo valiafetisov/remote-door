@@ -4,9 +4,9 @@ const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
-const configuration = require('./configuration.json')
+const configuration = require('../configuration.json')
 
-const outputDirectory = 'dist'
+const outputDirectory = '../dist'
 const hostToComponentMapping = Object.keys(configuration).reduce((obj, host) => ({
   ...obj,
   [host]: configuration[host].public
@@ -65,11 +65,11 @@ module.exports = {
   },
   plugins: [
     new CopyWebpackPlugin([
-      { from: './public', to: '.' }
+      { from: './src/public', to: '.' }
     ]),
     new CleanWebpackPlugin([outputDirectory]),
     new HtmlWebpackPlugin({
-      template: './public/index.html'
+      template: './src/public/index.html'
     }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
