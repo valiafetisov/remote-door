@@ -15,15 +15,17 @@ app.use(express.static('dist'))
 
 io.on('connection', (socket) => {
   const { hostname } = url.parse(socket.handshake.headers.referer)
-  if (!doors[hostname]) return
+  const door = doors[hostname]
+  if (!door) return
 
+  socket.emit('online', door.isOnline)
   const doorListener = (type, status) => {
     socket.emit(type, status)
   }
-  doors[hostname].addListener(doorListener)
+  door.addListener(doorListener)
   socket.on('disconnect', () => {
-    doors[hostname].removeListener(doorListener)
+    door.removeListener(doorListener)
   })
 
-  socket.on('open', doors[hostname].openTheDoor)
+  socket.on('open', door.openTheDoor)
 })

@@ -38,11 +38,15 @@ class Door {
     console.log('onNewMessage', this.host, mqttTopic, mqttMessageString)
     if (mqttTopic.endsWith('/door/status')) {
       this.callbacks.forEach((callback) => {
-        callback('open', mqttMessageString === 'open')
+        this.isOnline = true
+        this.isOpen = mqttMessageString === 'open'
+        callback('online', this.isOnline)
+        callback('open', this.isOpen)
       })
     } else if (mqttTopic.endsWith('/device/status')) {
+      this.isOnline = mqttMessageString === 'online'
       this.callbacks.forEach((callback) => {
-        callback('online', mqttMessageString === 'online')
+        callback('online', this.isOnline)
       })
     }
   }
