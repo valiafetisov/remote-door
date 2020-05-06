@@ -20,10 +20,10 @@ class DoorInteraction extends Component {
   }
 
   onDown = (e) => {
+    const { isLoading } = this.props
+    this.startedWhileLoading = isLoading
     this.setState({ isTouched: true })
     this.setState({ doorTransform: 10 })
-    const { isLoading } = this.props
-    if (isLoading) return
     this.start = e.clientX || e.touches[0].clientX
     this.pressed = true
   }
@@ -37,6 +37,7 @@ class DoorInteraction extends Component {
 
   onMove = (e) => {
     if (!this.pressed) return
+    if (this.startedWhileLoading) return
     const stop = e.clientX || e.touches[0].clientX
     this.setState({ doorTransform: this.getDiff(stop) })
   }
@@ -51,8 +52,7 @@ class DoorInteraction extends Component {
   }
 
   swipeStop = (diff) => {
-    const { isLoading } = this.props
-    if (isLoading) {
+    if (this.startedWhileLoading) {
       this.closeDoor()
       return
     }
