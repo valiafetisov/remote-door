@@ -1,22 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import DoorNumber133 from './doors/DoorNumber133'
-import DoorNumber13 from './doors/DoorNumber13'
-import DoorNumber31 from './doors/DoorNumber31'
-import DoorNumber66 from './doors/DoorNumber66'
-import DoorNumber4 from './doors/DoorNumber4'
-import DoorNumber65 from './doors/DoorNumber65'
-import DoorNumber126 from './doors/DoorNumber126'
-
-const DoorComponents = {
-  DoorNumber133,
-  DoorNumber13,
-  DoorNumber31,
-  DoorNumber66,
-  DoorNumber4,
-  DoorNumber65,
-  DoorNumber126,
-}
+import DoorSelector from './DoorSelector'
 
 // component that determines user 'swipe' action
 // and turn it into a door angle, passed to the door component
@@ -85,10 +69,9 @@ class DoorInteraction extends Component {
   }
 
   render() {
-    const { isLoading, isOnline, isOpen, componentName } = this.props
+    const { componentName, ...props } = this.props
     const { isTouched, doorTransform } = this.state
-    if (!DoorComponents[componentName]) return null
-    const Door = DoorComponents[componentName]
+
     return (
       <div
         className="DoorInteraction"
@@ -101,12 +84,11 @@ class DoorInteraction extends Component {
         onMouseMove={this.onMove}
         onTouchMove={this.onMove}
       >
-        <Door
-          isLoading={isLoading}
-          isOnline={isOnline}
-          isOpen={isOpen}
+        <DoorSelector
+          componentName={componentName}
           isAnimating={!isTouched}
           angle={doorTransform}
+          {...props}
         />
       </div>
     )
@@ -114,12 +96,9 @@ class DoorInteraction extends Component {
 }
 
 DoorInteraction.propTypes = {
-  isLoading: PropTypes.bool.isRequired,
-  isOnline: PropTypes.bool.isRequired,
-  isOpen: PropTypes.bool.isRequired,
-  openDoor: PropTypes.func.isRequired,
   componentName: PropTypes.string.isRequired,
-  swipeLeft: PropTypes.bool.isRequired
+  swipeLeft: PropTypes.bool.isRequired,
+  openDoor: PropTypes.func.isRequired
 }
 
 export default DoorInteraction
