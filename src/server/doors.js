@@ -60,9 +60,9 @@ class Door {
 
   addListener = (callback) => {
     this.listeners.push(callback)
-    // send current values immidiately
-    callback('online', this.isOnline)
-    callback('open', this.isOpen)
+    // send current (or default) values immidiately
+    callback('online', this.isOnline || true)
+    callback('open', this.isOpen || false)
   }
 
   removeListener = (callback) => {
