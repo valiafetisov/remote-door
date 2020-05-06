@@ -33,8 +33,7 @@ class Door {
     if (mqttTopic.endsWith('/door/status')) {
       this.listeners.forEach((callback) => {
         // if device is sending any king of message, it's safe to say it's online
-        this.isOnline = true
-        callback('online', this.isOnline)
+        this.client.publish(this.onlineTopic, 'online', { qos: 2, retain: true })
 
         // send open status
         this.isOpen = mqttMessageString === 'open'
@@ -60,9 +59,9 @@ class Door {
 
   addListener = (callback) => {
     this.listeners.push(callback)
-    // send current (or default) values immidiately
-    callback('online', this.isOnline || true)
-    callback('open', this.isOpen || false)
+    // send current values immidiately
+    if (typeof this.isOnline !== 'undefined') callback('online', this.isOnline)
+    if (typeof this.isOpen !== 'undefined') callback('open', this.isOpen)
   }
 
   removeListener = (callback) => {
