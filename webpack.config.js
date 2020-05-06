@@ -3,6 +3,7 @@ const nib = require('nib')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 const configuration = require('./configuration.json')
 
 const outputDirectory = 'dist'
@@ -63,6 +64,9 @@ module.exports = {
     }
   },
   plugins: [
+    new CopyWebpackPlugin([
+      { from: './public', to: '.' }
+    ]),
     new CleanWebpackPlugin([outputDirectory]),
     new HtmlWebpackPlugin({
       template: './public/index.html'

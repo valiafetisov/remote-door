@@ -1,14 +1,16 @@
 {
-    "name": "Door 126",
-    "short_name": "Door 126",
+    "name": "Door 65",
+    "short_name": "Door 65",
+    "start_url": "/",
+    "orientation": "portrait",
     "icons": [
         {
-            "src": "/favicons/Istanbul126/android-chrome-192x192.png",
+            "src": "/favicons/DoorNumber65/android-chrome-192x192.png",
             "sizes": "192x192",
             "type": "image/png"
         },
         {
-            "src": "/favicons/Istanbul126/android-chrome-512x512.png",
+            "src": "/favicons/DoorNumber65/android-chrome-512x512.png",
             "sizes": "512x512",
             "type": "image/png"
         }

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import io from 'socket.io-client'
 import DoorInteraction from './DoorInteraction'
 
@@ -33,6 +34,7 @@ class DoorContainer extends Component {
   }
 
   render() {
+    const { componentName, swipeLeft } = this.props
     const { isLoading, isOnline, isOpen } = this.state
     return (
       <DoorInteraction
@@ -40,9 +42,16 @@ class DoorContainer extends Component {
         isLoading={isLoading}
         isOnline={isOnline}
         isOpen={isOpen}
+        swipeLeft={swipeLeft}
+        componentName={componentName}
       />
     )
   }
+}
+
+DoorContainer.propTypes = {
+  componentName: PropTypes.string.isRequired,
+  swipeLeft: PropTypes.bool.isRequired
 }
 
 export default DoorContainer

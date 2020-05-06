@@ -17,7 +17,6 @@ const DoorComponents = {
   DoorNumber65,
   DoorNumber126,
 }
-const CONFIGURATION = process.env.doors[window.location.hostname]
 
 class DoorInteraction extends Component {
   pressed = false
@@ -53,7 +52,8 @@ class DoorInteraction extends Component {
   }
 
   getDiff = (stop) => {
-    let diff = CONFIGURATION.swipeLeft ? this.start - stop : stop - this.start
+    const { swipeLeft } = this.props
+    let diff = swipeLeft ? this.start - stop : stop - this.start
     diff += 10
     if (diff <= 0) diff = 0
     if (diff > 60) diff = 60
@@ -91,10 +91,9 @@ class DoorInteraction extends Component {
   }
 
   render() {
-    const { isLoading, isOnline, isOpen } = this.props
+    const { isLoading, isOnline, isOpen, componentName } = this.props
     const { isAnimating, doorTransform } = this.state
-    const componentName = CONFIGURATION.component
-    if (!componentName || !DoorComponents[componentName]) return null
+    if (!DoorComponents[componentName]) return null
     const Door = DoorComponents[componentName]
     return (
       <div
@@ -124,7 +123,9 @@ DoorInteraction.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   isOnline: PropTypes.bool.isRequired,
   isOpen: PropTypes.bool.isRequired,
-  openDoor: PropTypes.func.isRequired
+  openDoor: PropTypes.func.isRequired,
+  componentName: PropTypes.string.isRequired,
+  swipeLeft: PropTypes.bool.isRequired
 }
 
 export default DoorInteraction

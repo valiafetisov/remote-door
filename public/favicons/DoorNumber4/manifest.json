@@ -1,14 +1,16 @@
 {
-    "name": "Door 65",
-    "short_name": "Door 65",
+    "name": "Door 4",
+    "short_name": "Door 4",
+    "start_url": "/",
+    "orientation": "portrait",
     "icons": [
         {
-            "src": "/favicons/Dusseldorf65/android-chrome-192x192.png",
+            "src": "/favicons/DoorNumber4/android-chrome-192x192.png",
             "sizes": "192x192",
             "type": "image/png"
         },
         {
-            "src": "/favicons/Dusseldorf65/android-chrome-512x512.png",
+            "src": "/favicons/DoorNumber4/android-chrome-512x512.png",
             "sizes": "512x512",
             "type": "image/png"
         }

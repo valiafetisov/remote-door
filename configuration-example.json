@@ -2,7 +2,7 @@
   "localhost": {
     "mqtt": "mqtt://localhost:1883/doorprefix",
     "public": {
-      "component": "DoorNumber66"
+      "componentName": "DoorNumber66"
     }
   }
 }
