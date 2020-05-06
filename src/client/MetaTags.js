@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Helmet } from 'react-helmet'
 
+// component that adds meta-tags to the page
 const MetaTags = function ({ host, componentName }) {
   const doorNumber = componentName.replace(/^\D+/g, '')
   const doorTitle = `Door #${doorNumber}`

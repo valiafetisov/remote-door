@@ -18,6 +18,8 @@ const DoorComponents = {
   DoorNumber126,
 }
 
+// component that determines user 'swipe' action
+// and turn it into a door angle, passed to the door component
 class DoorInteraction extends Component {
   pressed = false
 
@@ -29,26 +31,28 @@ class DoorInteraction extends Component {
     super(props)
     this.state = {
       doorTransform: 0,
-      isAnimating: false
+      isTouched: false
     }
   }
 
   onDown = (e) => {
+    this.setState({ isTouched: true })
     this.setState({ doorTransform: 10 })
     this.start = e.clientX || e.touches[0].clientX
     this.pressed = true
   }
 
   onUp = (e) => {
+    this.setState({ isTouched: false })
     this.pressed = false
     const stop = e.clientX || e.changedTouches[0].clientX
-    this.stop(this.getDiff(stop))
+    this.swipeStop(this.getDiff(stop))
   }
 
   onMove = (e) => {
     if (!this.pressed) return
     const stop = e.clientX || e.touches[0].clientX
-    this.move(this.getDiff(stop))
+    this.setState({ doorTransform: this.getDiff(stop) })
   }
 
   getDiff = (stop) => {
@@ -60,19 +64,13 @@ class DoorInteraction extends Component {
     return diff
   }
 
-  move = (diff) => {
-    this.setState({ doorTransform: diff })
-  }
-
-  stop = (diff) => {
+  swipeStop = (diff) => {
     if (diff < 59) {
       this.closeDoor()
     } else {
       this.openDoor()
       setTimeout(() => {
-        setTimeout(() => {
-          this.closeDoor()
-        }, 100)
+        this.closeDoor()
       }, 5000)
     }
   }
@@ -84,15 +82,11 @@ class DoorInteraction extends Component {
 
   closeDoor = () => {
     this.setState({ doorTransform: 0 })
-    this.setState({ isAnimating: true })
-    setTimeout(() => {
-      this.setState({ isAnimating: false })
-    }, 200)
   }
 
   render() {
     const { isLoading, isOnline, isOpen, componentName } = this.props
-    const { isAnimating, doorTransform } = this.state
+    const { isTouched, doorTransform } = this.state
     if (!DoorComponents[componentName]) return null
     const Door = DoorComponents[componentName]
     return (
@@ -111,7 +105,7 @@ class DoorInteraction extends Component {
           isLoading={isLoading}
           isOnline={isOnline}
           isOpen={isOpen}
-          isAnimating={isAnimating}
+          isAnimating={!isTouched}
           angle={doorTransform}
         />
       </div>

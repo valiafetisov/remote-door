@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import io from 'socket.io-client'
 import DoorInteraction from './DoorInteraction'
 
+// component that connects to socket.io server
+// to recieve door state and send commands
 class DoorContainer extends Component {
   constructor(props) {
     super(props)
