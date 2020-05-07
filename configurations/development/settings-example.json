@@ -1,8 +1,0 @@
-{
-  "mqtt": {
-    "server": "mqtt://localhost",
-    "clientId": "meteor-development",
-    "username": "your_username_for_mqtt_server",
-    "password": "your_password_for_mqtt_server"
-  }
-}

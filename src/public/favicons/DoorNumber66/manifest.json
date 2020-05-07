@@ -1,0 +1,21 @@
+{
+    "name": "Door 66",
+    "short_name": "Door 66",
+    "start_url": "/",
+    "orientation": "portrait",
+    "icons": [
+        {
+            "src": "/favicons/DoorNumber66/android-chrome-192x192.png?v=01",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/favicons/DoorNumber66/android-chrome-512x512.png?v=01",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#ffffff",
+    "background_color": "#ffffff",
+    "display": "standalone"
+}

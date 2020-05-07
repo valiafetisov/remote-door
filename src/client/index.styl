@@ -1,0 +1,19 @@
+@import 'nib'
+global-reset()
+
+*
+  outline none
+  box-sizing border-box
+
+body, html
+  height 100%
+  overflow hidden
+
+#react-root
+  height 100%
+
+mobile = "all and (max-width 768px)"
+notmobile = "all and (min-width 768px)"
+
+@import './DoorInteraction.styl'
+@import './doors/*'
