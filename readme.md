@@ -4,7 +4,7 @@ Small full stack application with a single purpose: to open entrance door hooked
 
 One of the challenges was to prevent user confusion by clear communication of the door states without use of words. The door have `loading`, `open` or `offline` states represented graphically:
 
-  <img src="https://cdn.rawgit.com/valiafetisov/remote-door/master/public/showcase/ui-connecting.svg" width="280" height="280"><img src="https://cdn.rawgit.com/valiafetisov/remote-door/master/public/showcase/ui-open-close.svg" width="280" height="280"><img src="https://cdn.rawgit.com/valiafetisov/remote-door/master/public/showcase/ui-error.svg" width="280" height="280">
+  <img src="https://cdn.rawgit.com/valiafetisov/remote-door/master/src/public/showcase/ui-connecting.svg" width="280" height="280"><img src="https://cdn.rawgit.com/valiafetisov/remote-door/master/src/public/showcase/ui-open-close.svg" width="280" height="280"><img src="https://cdn.rawgit.com/valiafetisov/remote-door/master/src/public/showcase/ui-error.svg" width="280" height="280">
 
 ## Code Structure
 
